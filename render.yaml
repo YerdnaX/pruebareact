@@ -1,10 +1,10 @@
 services:
   - type: web
     name: becas-api
-    runtime: dotnet
+    runtime: docker
     rootDir: backend/BecasAPI
-    buildCommand: dotnet publish -c Release -o out
-    startCommand: dotnet out/BecasAPI.dll
+    dockerfilePath: backend/BecasAPI/Dockerfile
+    dockerContext: backend/BecasAPI
     healthCheckPath: /health
     envVars:
       - key: ASPNETCORE_ENVIRONMENT
@@ -20,7 +20,8 @@ services:
     rootDir: frontend
     buildCommand: npm install ; npm run build
     staticPublishPath: build
-    pullRequestPreviewsEnabled: false
+    previews:
+      generation: manual
     envVars:
       - key: REACT_APP_API_URL
         sync: false
