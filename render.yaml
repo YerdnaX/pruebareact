@@ -14,8 +14,9 @@ services:
       - key: Cors__AllowedOrigins__0
         sync: false
 
-  - type: static
+  - type: web
     name: becas-frontend
+    runtime: static
     rootDir: frontend
     buildCommand: npm install ; npm run build
     staticPublishPath: build
