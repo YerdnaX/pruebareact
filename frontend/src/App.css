@@ -1,0 +1,122 @@
+/* Reset básico */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f0f2f5;
+  color: #333;
+}
+
+/* Contenedor principal */
+.contenedor {
+  max-width: 900px;
+  margin: 40px auto;
+  padding: 0 16px;
+}
+
+/* Encabezado */
+.encabezado {
+  background-color: #1a3a5c;
+  color: white;
+  padding: 24px 32px;
+  border-radius: 8px 8px 0 0;
+}
+
+.encabezado h1 {
+  font-size: 1.6rem;
+  margin-bottom: 6px;
+}
+
+.encabezado p {
+  font-size: 0.95rem;
+  opacity: 0.85;
+}
+
+/* Área principal */
+main {
+  background: white;
+  padding: 24px;
+  border-left: 1px solid #ddd;
+  border-right: 1px solid #ddd;
+}
+
+/* Tabla de datos */
+.tabla-datos {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.92rem;
+}
+
+.tabla-datos th {
+  background-color: #1a3a5c;
+  color: white;
+  padding: 12px 14px;
+  text-align: left;
+  font-weight: 600;
+}
+
+.tabla-datos td {
+  padding: 10px 14px;
+  border-bottom: 1px solid #e8e8e8;
+}
+
+.tabla-datos tr:last-child td {
+  border-bottom: none;
+}
+
+.tabla-datos tr:hover td {
+  background-color: #f5f8ff;
+}
+
+/* Badges de estado */
+.estado-activo {
+  background-color: #d4edda;
+  color: #155724;
+  padding: 3px 10px;
+  border-radius: 12px;
+  font-size: 0.82rem;
+  font-weight: bold;
+}
+
+.estado-inactivo {
+  background-color: #f8d7da;
+  color: #721c24;
+  padding: 3px 10px;
+  border-radius: 12px;
+  font-size: 0.82rem;
+  font-weight: bold;
+}
+
+/* Mensajes de estado */
+.mensaje-carga {
+  padding: 24px;
+  text-align: center;
+  color: #555;
+  font-style: italic;
+}
+
+.mensaje-error {
+  margin: 16px;
+  padding: 16px 20px;
+  background-color: #f8d7da;
+  border: 1px solid #f5c6cb;
+  border-radius: 6px;
+  color: #721c24;
+  line-height: 1.6;
+}
+
+/* Pie de página */
+.pie {
+  background-color: #e9ecef;
+  text-align: center;
+  padding: 14px;
+  border-radius: 0 0 8px 8px;
+  border: 1px solid #ddd;
+  border-top: none;
+  font-size: 0.82rem;
+  color: #666;
+}
