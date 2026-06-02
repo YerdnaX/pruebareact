@@ -1,0 +1,25 @@
+services:
+  - type: web
+    name: becas-api
+    runtime: dotnet
+    rootDir: backend/BecasAPI
+    buildCommand: dotnet publish -c Release -o out
+    startCommand: dotnet out/BecasAPI.dll
+    healthCheckPath: /health
+    envVars:
+      - key: ASPNETCORE_ENVIRONMENT
+        value: Production
+      - key: ConnectionStrings__DefaultConnection
+        sync: false
+      - key: Cors__AllowedOrigins__0
+        sync: false
+
+  - type: static
+    name: becas-frontend
+    rootDir: frontend
+    buildCommand: npm install ; npm run build
+    staticPublishPath: build
+    pullRequestPreviewsEnabled: false
+    envVars:
+      - key: REACT_APP_API_URL
+        sync: false

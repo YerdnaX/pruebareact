@@ -2,18 +2,28 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
 
-// CORS: agrega aquí la URL del frontend en Render una vez que la tengas
+var allowedOrigins = builder.Configuration
+    .GetSection("Cors:AllowedOrigins")
+    .Get<string[]>()?
+    .Where(origin => !string.IsNullOrWhiteSpace(origin))
+    .ToArray()
+    ?? Array.Empty<string>();
+
+if (allowedOrigins.Length == 0)
+{
+    allowedOrigins = new[]
+    {
+        "http://localhost:3000",
+        "http://localhost:5173"
+    };
+}
+
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowReact", policy =>
     {
         policy
-            .WithOrigins(
-                "http://localhost:3000",
-                "http://localhost:5173",
-                "https://tiusr15pl.cuc-carrera-ti.ac.cr"
-                // "https://becas-frontend.onrender.com"  ← agregar después del primer deploy
-            )
+            .WithOrigins(allowedOrigins)
             .AllowAnyHeader()
             .AllowAnyMethod();
     });
@@ -23,6 +33,16 @@ var app = builder.Build();
 
 app.UseCors("AllowReact");
 app.UseAuthorization();
+
+app.MapGet("/", () => Results.Ok(new
+{
+    message = "Becas API activa",
+    health = "/health",
+    endpoint = "/api/tipoevaluacion"
+}));
+
+app.MapGet("/health", () => Results.Ok(new { status = "ok" }));
+
 app.MapControllers();
 
 // Render asigna el puerto mediante la variable de entorno PORT
